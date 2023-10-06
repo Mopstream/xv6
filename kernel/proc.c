@@ -636,7 +636,7 @@ procdump(void) {
             [USED]      "used",
             [SLEEPING]  "sleep ",
             [RUNNABLE]  "runble",
-            [RUNNING]   "run   ",
+            [RUNNING]   "run",
             [ZOMBIE]    "zombie"
     };
     struct proc *p;
