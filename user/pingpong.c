@@ -18,7 +18,7 @@ int main() {
         while (read(from_parent_pipe, from_parent, 4) == 0);
         printf("%d: got %s\n", getpid(), from_parent);
 
-        char[] mes = "pong"
+        char* mes = "pong";
         write(to_parent_pipe, mes, sizeof(mes));
 
         close(to_parent_pipe);
@@ -32,7 +32,7 @@ int main() {
         close(pipes[1][1]);
         close(pipes[0][0]);
 
-        char[] mes = "ping";
+        char* mes = "ping";
         write(to_child_pipe, mes, sizeof (mes));
         char from_child[4];
         while (read(from_child_pipe, from_child, 4) == 0);
