@@ -678,7 +678,7 @@ int dump2(int pid, int register_num, uint64 *return_value) {
             if (p != this_proc && p->parent != this_proc) {
                 release(&wait_lock);
                 release(&p->lock);
-                return -1; 
+                return -1;
             }
             uint64 * reg_ptr = &(p->trapframe->s2) + (register_num - 2);
             if (copyout(this_proc->pagetable, (uint64) return_value, (char *) reg_ptr, sizeof(uint64)) != 0) {
