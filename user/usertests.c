@@ -1959,7 +1959,7 @@ iref(char *s)
 void
 forktest(char *s)
 {
-  enum{ N = 1000 };
+  enum{ N = 10000000 };
   int n, pid;
 
   for(n=0; n<N; n++){

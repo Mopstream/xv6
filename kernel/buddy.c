@@ -27,10 +27,10 @@ typedef struct list Bd_list;
 // 8 blocks).
 struct sz_info {
     Bd_list free;
-    char *split;
-    char *can_merge;
-};
-typedef struct sz_info Sz_info;
+        char *split;
+        char *can_merge;
+    };
+    typedef struct sz_info Sz_info;
 
 static Sz_info *bd_sizes;
 static void *bd_base;  // start address of memory managed by the buddy allocator

@@ -15,11 +15,11 @@
 
 struct devsw devsw[NDEV];
 
-struct spinlock list_lock;
+struct spinlock file_list_lock;
 
 void
 fileinit(void) {
-    initlock(&list_lock, "file_list_lock");
+    initlock(&file_list_lock, "file_file_list_lock");
 }
 
 // Allocate a file structure.
@@ -37,11 +37,9 @@ filealloc(void) {
 struct file*
 filedup(struct file *f)
 {
-  acquire(&f->lk);
   if(f->ref < 1)
     panic("filedup");
   f->ref++;
-  release(&f->lk);
   return f;
 }
 
@@ -50,15 +48,12 @@ void
 fileclose(struct file *f) {
     struct file ff;
 
-    acquire(&f->lk);
     if (f->ref < 1)
         panic("fileclose");
     if (--f->ref > 0) {
-        release(&f->lk);
         return;
     }
     ff = *f;
-    release(&f->lk);
     bd_free(f);
     if (ff.type == FD_PIPE) {
         pipeclose(ff.pipe, ff.writable);
